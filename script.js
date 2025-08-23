@@ -11,6 +11,7 @@ function resizeCanvas() {
 }
 window.addEventListener("resize", resizeCanvas);
 
+// Premi
 const premi = [
   { nome: "Sconto 10%" , probabilita: 0.4 },
   { nome: "Calice Gratis", probabilita: 0.2 },
@@ -19,99 +20,100 @@ const premi = [
   { nome: "Super Premio 🍷", probabilita: 0.05 }
 ];
 
+// Colori alternati
 const colori = ["#FFD700", "#8B0000", "#228B22"];
 
+// Controllo giocata giornaliera
 const oggi = new Date().toLocaleDateString();
-if (localStorage.getItem("ultimaGiocata") === oggi) {
+if(localStorage.getItem("ultimaGiocata") === oggi){
   btn.disabled = true;
   msg.innerText = "Hai già giocato oggi, torna domani! 🍷";
 }
 
-function disegnaRuota(rotazione = 0) {
+// Disegna ruota perfetta
+function disegnaRuota(rotazione=0){
   const tot = premi.length;
-  const angolo = (2 * Math.PI) / tot;
-  const raggio = canvas.width / 2;
+  const angolo = (2*Math.PI)/tot;
+  const raggio = canvas.width/2;
 
+  ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.save();
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.translate(raggio, raggio);
+  ctx.translate(raggio,raggio);
   ctx.rotate(rotazione);
-  ctx.translate(-raggio, -raggio);
+  ctx.translate(-raggio,-raggio);
 
-  premi.forEach((p, i) => {
+  premi.forEach((p,i)=>{
     // Fetta
     ctx.beginPath();
-    ctx.moveTo(raggio, raggio);
-    ctx.arc(raggio, raggio, raggio, i * angolo, (i + 1) * angolo);
-    ctx.fillStyle = colori[i % colori.length];
+    ctx.moveTo(raggio,raggio);
+    ctx.arc(raggio,raggio,raggio,i*angolo,(i+1)*angolo);
+    ctx.fillStyle = colori[i%colori.length];
     ctx.fill();
     ctx.stroke();
 
-  // TESTO centrato lungo fetta, più esterno
+    // Testo centrato radiale
     ctx.save();
-    ctx.translate(raggio, raggio);
-    const angoloCentroFetta = i * angolo + angolo / 2;
-    ctx.rotate(angoloCentroFetta);
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillStyle = "white";
-    ctx.font = `${Math.floor(canvas.width / 25)}px Arial`;
-    const dist = raggio * 0.75; // distanza dal centro, più esterno
-    ctx.fillText(p.nome, 0, -dist); // usa -dist perché y verso l'alto
+    ctx.translate(raggio,raggio);
+    ctx.rotate(i*angolo + angolo/2);
+    ctx.textAlign="center";
+    ctx.textBaseline="middle";
+    ctx.fillStyle="white";
+    ctx.font=`bold ${Math.floor(canvas.width/16)}px "Fredoka One", cursive`; // più leggibile
+    const distanzaDalCentro = raggio*0.78;
+    ctx.fillText(p.nome,0,-distanzaDalCentro);
     ctx.restore();
   });
 
   ctx.restore();
 }
 
-function estraiPremio() {
-  let r = Math.random();
-  let somma = 0;
-  for (let p of premi) {
-    somma += p.probabilita;
-    if (r <= somma) return p;
+// Estrazione premio basata su probabilità
+function estraiPremio(){
+  let r=Math.random();
+  let somma=0;
+  for(let p of premi){
+    somma+=p.probabilita;
+    if(r<=somma) return p;
   }
-  return premi[premi.length - 1];
+  return premi[premi.length-1];
 }
 
-let girando = false;
-btn.addEventListener("click", () => {
-  if (girando) return;
-  if (localStorage.getItem("ultimaGiocata") === oggi) {
-    msg.innerText = "Hai già giocato oggi, torna domani! 🍷";
+// Animazione rotazione
+let girando=false;
+btn.addEventListener("click",()=>{
+  if(girando) return;
+  if(localStorage.getItem("ultimaGiocata") === oggi){
+    msg.innerText="Hai già giocato oggi, torna domani! 🍷";
     return;
   }
 
-  girando = true;
+  girando=true;
   const premio = estraiPremio();
-  const giri = 5;
+  const giri = 6; // più giri fluidi
   const targetIndex = premi.indexOf(premio);
-  const angoloPerPremio = (2 * Math.PI) / premi.length;
-  const angoloTarget = targetIndex * angoloPerPremio + angoloPerPremio / 2;
+  const angoloPerPremio = (2*Math.PI)/premi.length;
+  const angoloTarget = targetIndex*angoloPerPremio + angoloPerPremio/2;
 
-  const rotFinale = giri * 2 * Math.PI + angoloTarget;
-  const durata = 4000;
+  const rotFinale = giri*2*Math.PI + angoloTarget;
+  const durata = 4500;
   const start = performance.now();
 
-  function anima(t) {
-    const progresso = Math.min((t - start) / durata, 1);
-    const rot = rotFinale * easeOutCubic(progresso);
+  function anima(t){
+    const progresso = Math.min((t-start)/durata,1);
+    const rot = rotFinale*easeOutCubic(progresso);
     disegnaRuota(rot);
 
-    if (progresso < 1) {
-      requestAnimationFrame(anima);
-    } else {
-      girando = false;
-      msg.innerText = `Hai vinto: ${premio.nome}! 🎉`;
-      btn.disabled = true;
-      localStorage.setItem("ultimaGiocata", oggi);
+    if(progresso<1) requestAnimationFrame(anima);
+    else {
+      girando=false;
+      msg.innerText=`Hai vinto: ${premio.nome}! 🎉`;
+      btn.disabled=true;
+      localStorage.setItem("ultimaGiocata",oggi);
     }
   }
   requestAnimationFrame(anima);
 });
 
-function easeOutCubic(x) {
-  return 1 - Math.pow(1 - x, 3);
-}
+function easeOutCubic(x){ return 1-Math.pow(1-x,3); }
 
 resizeCanvas();
