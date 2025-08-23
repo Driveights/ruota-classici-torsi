@@ -64,7 +64,7 @@ function disegnaRuota(rotazione=0){
     ctx.textAlign="center";
     ctx.textBaseline="middle";
     ctx.fillStyle="white";
-    ctx.font = `bold ${Math.floor(canvas.width/18)}px sans-serif`;
+    ctx.font = `bold ${Math.floor(canvas.width/36)}px sans-serif`;
 
     // Ombra per leggibilità
     ctx.shadowColor="black";
@@ -99,17 +99,17 @@ function disegnaRuota(rotazione=0){
 
   ctx.restore();
 
-  // Indicatore in alto
-  ctx.beginPath();
-  ctx.moveTo(raggio-18, 15);
-  ctx.lineTo(raggio+18, 15);
-  ctx.lineTo(raggio, 50);
-  ctx.closePath();
-  ctx.fillStyle="red";
-  ctx.fill();
-  ctx.strokeStyle="#333";
-  ctx.lineWidth=2;
-  ctx.stroke();
+  // // Indicatore in alto
+  // ctx.beginPath();
+  // ctx.moveTo(raggio-18, 15);
+  // ctx.lineTo(raggio+18, 15);
+  // ctx.lineTo(raggio, 50);
+  // ctx.closePath();
+  // ctx.fillStyle="red";
+  // ctx.fill();
+  // ctx.strokeStyle="#333";
+  // ctx.lineWidth=2;
+  // ctx.stroke();
 }
 
 // Estrazione premio basata su probabilità
