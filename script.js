@@ -3,7 +3,6 @@ const ctx = canvas.getContext("2d");
 const btn = document.getElementById("giraBtn");
 const msg = document.getElementById("messaggio");
 
-// Dimensione canvas adattiva
 function resizeCanvas() {
   const size = Math.min(window.innerWidth * 0.9, 500);
   canvas.width = size;
@@ -12,7 +11,6 @@ function resizeCanvas() {
 }
 window.addEventListener("resize", resizeCanvas);
 
-// Premi
 const premi = [
   { nome: "Sconto 10%", probabilita: 0.4 },
   { nome: "Calice Gratis", probabilita: 0.2 },
@@ -21,17 +19,14 @@ const premi = [
   { nome: "Super Premio 🍷", probabilita: 0.05 }
 ];
 
-// Colori alternati giallo-rosso-verde
 const colori = ["#FFD700", "#8B0000", "#228B22"];
 
-// Controllo giocata giornaliera
 const oggi = new Date().toLocaleDateString();
 if (localStorage.getItem("ultimaGiocata") === oggi) {
   btn.disabled = true;
   msg.innerText = "Hai già giocato oggi, torna domani! 🍷";
 }
 
-// Disegna ruota
 function disegnaRuota(rotazione = 0) {
   const tot = premi.length;
   const angolo = (2 * Math.PI) / tot;
@@ -64,7 +59,6 @@ function disegnaRuota(rotazione = 0) {
   ctx.restore();
 }
 
-// Estrazione basata su probabilità
 function estraiPremio() {
   let r = Math.random();
   let somma = 0;
@@ -75,7 +69,6 @@ function estraiPremio() {
   return premi[premi.length - 1];
 }
 
-// Rotazione
 let girando = false;
 btn.addEventListener("click", () => {
   if (girando) return;
@@ -87,7 +80,7 @@ btn.addEventListener("click", () => {
 
   girando = true;
   const premio = estraiPremio();
-  const giri = 5; // giri completi
+  const giri = 5;
   const targetIndex = premi.indexOf(premio);
   const angoloPerPremio = (2 * Math.PI) / premi.length;
   const angoloTarget = targetIndex * angoloPerPremio + angoloPerPremio / 2;
@@ -95,7 +88,7 @@ btn.addEventListener("click", () => {
   let rot = 0;
   const rotFinale = giri * 2 * Math.PI + angoloTarget;
 
-  const durata = 4000; // 4 secondi
+  const durata = 4000;
   const start = performance.now();
 
   function anima(t) {
@@ -119,5 +112,4 @@ function easeOutCubic(x) {
   return 1 - Math.pow(1 - x, 3);
 }
 
-// Prima render
 resizeCanvas();
