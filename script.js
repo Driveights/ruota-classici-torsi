@@ -47,16 +47,17 @@ function disegnaRuota(rotazione = 0) {
     ctx.fill();
     ctx.stroke();
 
-    // Testo centrato, più spesso, font Fredoka One
+  // TESTO centrato lungo fetta, più esterno
     ctx.save();
     ctx.translate(raggio, raggio);
-    ctx.rotate(i * angolo + angolo / 2);
+    const angoloCentroFetta = i * angolo + angolo / 2;
+    ctx.rotate(angoloCentroFetta);
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillStyle = "white";
-    ctx.font = `${Math.floor(canvas.width / 18)}px "Fredoka One", cursive`; // più grande e spessa
-    const distanzaDalCentro = raggio * 0.75;
-    ctx.fillText(p.nome, 0, -distanzaDalCentro);
+    ctx.font = `${Math.floor(canvas.width / 25)}px Arial`;
+    const dist = raggio * 0.75; // distanza dal centro, più esterno
+    ctx.fillText(p.nome, 0, -dist); // usa -dist perché y verso l'alto
     ctx.restore();
   });
 
