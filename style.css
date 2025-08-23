@@ -1,0 +1,56 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #faf3e0;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+.ruota-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+#ruota {
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+#logo {
+  width: 120px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: white;
+  padding: 5px;
+}
+
+#giraBtn {
+  background: #8B0000;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#giraBtn:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
+#messaggio {
+  font-size: 20px;
+  margin-top: 15px;
+  font-weight: bold;
+}
