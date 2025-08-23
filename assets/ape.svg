@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Aperitivo">
+  <defs>
+    <linearGradient id="spritz" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ff7f2a"></stop>
+      <stop offset="100%" stop-color="#ff3d00"></stop>
+    </linearGradient>
+  </defs>
+  <!-- Bicchiere alto -->
+  <path d="M40 18h48l-6 78H46L40 18z" fill="white" stroke="#c7d2d9" stroke-width="3"></path>
+  <!-- Liquido -->
+  <path d="M44 42h40l-4 50H48l-4-50z" fill="url(#spritz)"></path>
+  <!-- Cubetti di ghiaccio -->
+  <g fill="#ffffff" opacity="0.8" stroke="#dfe6ea" stroke-width="2">
+    <rect x="52" y="48" width="10" height="10" rx="2"></rect>
+    <rect x="66" y="54" width="10" height="10" rx="2"></rect>
+    <rect x="58" y="64" width="10" height="10" rx="2"></rect>
+  </g>
+  <!-- Fetta d'arancia -->
+  <g transform="translate(88,20)">
+    <circle cx="0" cy="0" r="14" fill="#ffa726" stroke="#ff6d00" stroke-width="3"></circle>
+    <g stroke="#ff6d00" stroke-width="2" fill="none">
+      <path d="M0 0L12 0"></path><path d="M0 0L-12 0"></path><path d="M0 0L0 12"></path><path d="M0 0L0 -12"></path>
+      <path d="M0 0L8.5 8.5"></path><path d="M0 0L-8.5 -8.5"></path><path d="M0 0L8.5 -8.5"></path><path d="M0 0L-8.5 8.5"></path>
+    </g>
+  </g>
+  <!-- Cannuccia -->
+  <path d="M78 16l12 40" stroke="#a0a7ad" stroke-width="4" stroke-linecap="round"></path>
+  <!-- Ombra -->
+  <ellipse cx="64" cy="116" rx="24" ry="6" fill="#e7eef2"></ellipse>
+</svg>

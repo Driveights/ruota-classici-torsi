@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Calice di vino rosso">
+  <defs>
+    <linearGradient id="redwine" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#b0002a"></stop>
+      <stop offset="100%" stop-color="#e21f3d"></stop>
+    </linearGradient>
+  </defs>
+  <!-- Coppa -->
+  <path d="M32 20h64c0 22-10 36-28 40v22h-8V60C42 56 32 42 32 20z" fill="white" stroke="#c7d2d9" stroke-width="3"></path>
+  <!-- Vino -->
+  <path d="M40 40h48c-2 10-10 18-24 20-14-2-22-10-24-20z" fill="url(#redwine)"></path>
+  <!-- Stelo e base -->
+  <rect x="60" y="82" width="8" height="26" rx="4" fill="#dfe6ea" stroke="#c7d2d9" stroke-width="3"></rect>
+  <ellipse cx="64" cy="112" rx="22" ry="6" fill="#e7eef2" stroke="#c7d2d9" stroke-width="3"></ellipse>
+  <!-- Highlight -->
+  <path d="M44 26c0 10 10 14 10 14" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" opacity="0.7"></path>
+</svg>
