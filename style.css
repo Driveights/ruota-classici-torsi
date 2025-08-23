@@ -20,7 +20,7 @@ body {
 
 h1 {
   font-size: 1.8rem;
-  margin-bottom: 40px; /* spazio maggiore sopra la ruota */
+  margin-bottom: 40px;
 }
 
 /* WRAPPER RUOTA */
@@ -75,6 +75,8 @@ h1 {
   cursor: pointer;
   margin-top: 20px;
   transition: background 0.2s ease;
+  font-family: "Fredoka One", cursive;
+  font-weight: bold;
 }
 
 #giraBtn:hover:not(:disabled) {
@@ -91,6 +93,7 @@ h1 {
   font-size: 1.2rem;
   margin-top: 15px;
   font-weight: bold;
+  font-family: "Fredoka One", cursive;
 }
 
 /* RESPONSIVE */

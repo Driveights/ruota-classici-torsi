@@ -3,7 +3,6 @@ const ctx = canvas.getContext("2d");
 const btn = document.getElementById("giraBtn");
 const msg = document.getElementById("messaggio");
 
-// Adatta canvas a mobile
 function resizeCanvas() {
   const size = Math.min(window.innerWidth * 0.9, 400);
   canvas.width = size;
@@ -12,7 +11,6 @@ function resizeCanvas() {
 }
 window.addEventListener("resize", resizeCanvas);
 
-// Premi della ruota
 const premi = [
   { nome: "Sconto 10%" , probabilita: 0.4 },
   { nome: "Calice Gratis", probabilita: 0.2 },
@@ -21,17 +19,14 @@ const premi = [
   { nome: "Super Premio 🍷", probabilita: 0.05 }
 ];
 
-// Colori alternati
 const colori = ["#FFD700", "#8B0000", "#228B22"];
 
-// Controllo giocata giornaliera
 const oggi = new Date().toLocaleDateString();
 if (localStorage.getItem("ultimaGiocata") === oggi) {
   btn.disabled = true;
   msg.innerText = "Hai già giocato oggi, torna domani! 🍷";
 }
 
-// Disegna ruota con testo esterno e font bello
 function disegnaRuota(rotazione = 0) {
   const tot = premi.length;
   const angolo = (2 * Math.PI) / tot;
@@ -52,14 +47,15 @@ function disegnaRuota(rotazione = 0) {
     ctx.fill();
     ctx.stroke();
 
-    // Testo più bello e verso l’esterno
+    // Testo centrato, più spesso, font Fredoka One
     ctx.save();
     ctx.translate(raggio, raggio);
     ctx.rotate(i * angolo + angolo / 2);
     ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
     ctx.fillStyle = "white";
-    ctx.font = `${Math.floor(canvas.width / 20)}px "Fredoka One", cursive`;
-    const distanzaDalCentro = raggio * 0.8; // più esterno
+    ctx.font = `${Math.floor(canvas.width / 18)}px "Fredoka One", cursive`; // più grande e spessa
+    const distanzaDalCentro = raggio * 0.75;
     ctx.fillText(p.nome, 0, -distanzaDalCentro);
     ctx.restore();
   });
@@ -67,7 +63,6 @@ function disegnaRuota(rotazione = 0) {
   ctx.restore();
 }
 
-// Estrazione basata su probabilità
 function estraiPremio() {
   let r = Math.random();
   let somma = 0;
@@ -78,7 +73,6 @@ function estraiPremio() {
   return premi[premi.length - 1];
 }
 
-// Animazione rotazione
 let girando = false;
 btn.addEventListener("click", () => {
   if (girando) return;
@@ -119,5 +113,4 @@ function easeOutCubic(x) {
   return 1 - Math.pow(1 - x, 3);
 }
 
-// Prima render
 resizeCanvas();
