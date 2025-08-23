@@ -8,37 +8,39 @@ body {
 }
 
 .container {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .ruota-wrapper {
   position: relative;
   display: inline-block;
+  width: 90vw;
+  max-width: 500px;
 }
 
 #ruota {
+  width: 100%;
+  height: auto;
   border-radius: 50%;
   display: block;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
+/* Logo come freccia in alto */
 #logo {
-  width: 120px;
+  width: 70px;
   position: absolute;
-  top: 50%;
+  top: -35px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: white;
-  padding: 5px;
+  transform: translateX(-50%) rotate(180deg);
 }
 
 #giraBtn {
   background: #8B0000;
   color: white;
   border: none;
-  padding: 15px 25px;
-  font-size: 18px;
+  padding: 12px 20px;
+  font-size: 16px;
   border-radius: 10px;
   cursor: pointer;
   margin-top: 20px;
@@ -50,7 +52,7 @@ body {
 }
 
 #messaggio {
-  font-size: 20px;
+  font-size: 18px;
   margin-top: 15px;
   font-weight: bold;
 }

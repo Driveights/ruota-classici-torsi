@@ -3,13 +3,26 @@ const ctx = canvas.getContext("2d");
 const btn = document.getElementById("giraBtn");
 const msg = document.getElementById("messaggio");
 
+// Dimensione canvas adattiva
+function resizeCanvas() {
+  const size = Math.min(window.innerWidth * 0.9, 500);
+  canvas.width = size;
+  canvas.height = size;
+  disegnaRuota();
+}
+window.addEventListener("resize", resizeCanvas);
+
+// Premi
 const premi = [
-  { nome: "Sconto 10%", img: "assets/premio1.png", probabilita: 0.4 },
-  { nome: "Calice Gratis", img: "assets/premio2.png", probabilita: 0.2 },
-  { nome: "Brindisi Speciale", img: "assets/premio3.png", probabilita: 0.2 },
-  { nome: "Sconto 20%", img: "assets/premio4.png", probabilita: 0.15 },
-  { nome: "Super Premio 🍷", img: "assets/premio5.png", probabilita: 0.05 }
+  { nome: "Sconto 10%", probabilita: 0.4 },
+  { nome: "Calice Gratis", probabilita: 0.2 },
+  { nome: "Brindisi Speciale", probabilita: 0.2 },
+  { nome: "Sconto 20%", probabilita: 0.15 },
+  { nome: "Super Premio 🍷", probabilita: 0.05 }
 ];
+
+// Colori alternati giallo-rosso-verde
+const colori = ["#FFD700", "#8B0000", "#228B22"];
 
 // Controllo giocata giornaliera
 const oggi = new Date().toLocaleDateString();
@@ -22,34 +35,34 @@ if (localStorage.getItem("ultimaGiocata") === oggi) {
 function disegnaRuota(rotazione = 0) {
   const tot = premi.length;
   const angolo = (2 * Math.PI) / tot;
+  const raggio = canvas.width / 2;
 
   ctx.save();
-  ctx.clearRect(0, 0, 500, 500);
-  ctx.translate(250, 250);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.translate(raggio, raggio);
   ctx.rotate(rotazione);
-  ctx.translate(-250, -250);
+  ctx.translate(-raggio, -raggio);
 
   premi.forEach((p, i) => {
     ctx.beginPath();
-    ctx.moveTo(250, 250);
-    ctx.arc(250, 250, 250, i * angolo, (i + 1) * angolo);
-    ctx.fillStyle = i % 2 === 0 ? "#d4af37" : "#8b0000";
+    ctx.moveTo(raggio, raggio);
+    ctx.arc(raggio, raggio, raggio, i * angolo, (i + 1) * angolo);
+    ctx.fillStyle = colori[i % colori.length];
     ctx.fill();
     ctx.stroke();
 
     ctx.save();
-    ctx.translate(250, 250);
+    ctx.translate(raggio, raggio);
     ctx.rotate(i * angolo + angolo / 2);
     ctx.textAlign = "right";
     ctx.fillStyle = "white";
-    ctx.font = "18px Arial";
-    ctx.fillText(p.nome, 230, 10);
+    ctx.font = `${Math.floor(canvas.width / 20)}px Arial`;
+    ctx.fillText(p.nome, raggio - 20, 10);
     ctx.restore();
   });
 
   ctx.restore();
 }
-disegnaRuota();
 
 // Estrazione basata su probabilità
 function estraiPremio() {
@@ -105,3 +118,6 @@ btn.addEventListener("click", () => {
 function easeOutCubic(x) {
   return 1 - Math.pow(1 - x, 3);
 }
+
+// Prima render
+resizeCanvas();
