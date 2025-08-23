@@ -13,11 +13,11 @@ window.addEventListener("resize", resizeCanvas);
 
 // Premi
 const premi = [
-  { nome: "Sconto 10%" , probabilita: 0.4 },
-  { nome: "Calice Gratis", probabilita: 0.2 },
-  { nome: "Brindisi Speciale", probabilita: 0.2 },
-  { nome: "Sconto 20%" , probabilita: 0.15 },
-  { nome: "Super Premio 🍷", probabilita: 0.05 }
+  { nome: "SCONTO" , probabilita: 0.4 },
+  { nome: "CALICE GRATIS", probabilita: 0.2 },
+  { nome: "BRINDISI DEL TORSO", probabilita: 0.2 },
+  { nome: "SEI UN TORSO" , probabilita: 0.15 },
+  { nome: "SUPER MELA", probabilita: 0.05 }
 ];
 
 // Colori alternati
@@ -64,7 +64,7 @@ function disegnaRuota(rotazione=0){
     ctx.textAlign="center";
     ctx.textBaseline="middle";
     ctx.fillStyle="white";
-    ctx.font = `bold ${Math.floor(canvas.width/36)}px sans-serif`;
+    ctx.font = `bold ${Math.floor(canvas.width/25)}px "Special Elite", monospace`;
 
     // Ombra per leggibilità
     ctx.shadowColor="black";
@@ -98,18 +98,6 @@ function disegnaRuota(rotazione=0){
   ctx.fillText("🍷",0,0);
 
   ctx.restore();
-
-  // // Indicatore in alto
-  // ctx.beginPath();
-  // ctx.moveTo(raggio-18, 15);
-  // ctx.lineTo(raggio+18, 15);
-  // ctx.lineTo(raggio, 50);
-  // ctx.closePath();
-  // ctx.fillStyle="red";
-  // ctx.fill();
-  // ctx.strokeStyle="#333";
-  // ctx.lineWidth=2;
-  // ctx.stroke();
 }
 
 // Estrazione premio basata su probabilità
@@ -152,7 +140,7 @@ btn.addEventListener("click",()=>{
     if(progresso<1) requestAnimationFrame(anima);
     else {
       girando=false;
-      msg.innerText=`Hai vinto: ${premio.nome}! 🎉`;
+      msg.innerText=`HAI VINTO: ${premio.nome}! 🎉`;
       btn.disabled=true;
       localStorage.setItem("ultimaGiocata",oggi);
     }
