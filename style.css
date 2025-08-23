@@ -1,34 +1,48 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: #faf3e0;
-  color: #333;
+/* RESET DI BASE */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-.container {
-  margin-top: 20px;
+body {
+  font-family: "Arial", sans-serif;
+  text-align: center;
+  background: #faf3e0;
+  color: #333;
+  padding: 10px;
 }
 
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* WRAPPER RUOTA */
 .ruota-wrapper {
   position: relative;
-  display: inline-block;
-  width: 90vw;
-  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
 }
 
 #ruota {
   width: 100%;
   height: auto;
   border-radius: 50%;
-  display: block;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display: block;
 }
 
-/* Logo al centro */
+/* LOGO AL CENTRO */
 #logo {
-  width: 100px;
+  width: 20%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -36,26 +50,35 @@ body {
   border-radius: 50%;
   background: white;
   padding: 5px;
+  z-index: 2;
 }
 
-/* Freccia in alto */
+/* FRECCIA IN ALTO */
 #freccia {
-  width: 60px;
+  width: 15%;
+  max-width: 60px;
   position: absolute;
-  top: -30px;
+  top: -8%;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 3;
 }
 
+/* BOTTONE */
 #giraBtn {
   background: #8B0000;
   color: white;
   border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 10px;
+  padding: 14px 24px;
+  font-size: 1rem;
+  border-radius: 12px;
   cursor: pointer;
   margin-top: 20px;
+  transition: background 0.2s ease;
+}
+
+#giraBtn:hover:not(:disabled) {
+  background: #a40000;
 }
 
 #giraBtn:disabled {
@@ -63,8 +86,19 @@ body {
   cursor: not-allowed;
 }
 
+/* MESSAGGIO */
 #messaggio {
-  font-size: 18px;
+  font-size: 1.2rem;
   margin-top: 15px;
   font-weight: bold;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+  #messaggio {
+    font-size: 1rem;
+  }
 }

@@ -4,7 +4,7 @@ const btn = document.getElementById("giraBtn");
 const msg = document.getElementById("messaggio");
 
 function resizeCanvas() {
-  const size = Math.min(window.innerWidth * 0.9, 500);
+  const size = Math.min(window.innerWidth * 0.9, 400);
   canvas.width = size;
   canvas.height = size;
   disegnaRuota();
@@ -51,8 +51,9 @@ function disegnaRuota(rotazione = 0) {
     ctx.rotate(i * angolo + angolo / 2);
     ctx.textAlign = "right";
     ctx.fillStyle = "white";
-    ctx.font = `${Math.floor(canvas.width / 20)}px Arial`;
-    ctx.fillText(p.nome, raggio - 20, 10);
+    ctx.font = `${Math.floor(canvas.width / 22)}px Arial`;
+    // testo spostato verso l'esterno per non coprire il logo
+    ctx.fillText(p.nome, raggio - 40, 10);
     ctx.restore();
   });
 
