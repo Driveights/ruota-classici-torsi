@@ -30,7 +30,6 @@ if(localStorage.getItem("ultimaGiocata") === oggi){
   msg.innerText = "Hai già giocato oggi, torna domani! 🍷";
 }
 
-// Disegna ruota perfetta
 function disegnaRuota(rotazione=0){
   const tot = premi.length;
   const angolo = (2*Math.PI)/tot;
@@ -51,21 +50,23 @@ function disegnaRuota(rotazione=0){
     ctx.fill();
     ctx.stroke();
 
-    // Testo centrato radiale
+    // Testo centrato radialmente
     ctx.save();
     ctx.translate(raggio,raggio);
-    ctx.rotate(i*angolo + angolo/2);
+    const angoloCentrale = i*angolo + angolo/2;
+    ctx.rotate(angoloCentrale);
     ctx.textAlign="center";
     ctx.textBaseline="middle";
     ctx.fillStyle="white";
-    ctx.font=`bold ${Math.floor(canvas.width/16)}px "Fredoka One", cursive`; // più leggibile
-    const distanzaDalCentro = raggio*0.78;
+    ctx.font = `bold ${Math.floor(canvas.width/14)}px "Fredoka One", cursive`;
+    const distanzaDalCentro = raggio*0.7; // più lontano dal logo
     ctx.fillText(p.nome,0,-distanzaDalCentro);
     ctx.restore();
   });
 
   ctx.restore();
 }
+
 
 // Estrazione premio basata su probabilità
 function estraiPremio(){
