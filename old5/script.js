@@ -11,7 +11,7 @@ const INDICATOR_ANGLE = -Math.PI / 2; // in alto
 const segments = [
   { label: 'Sei un Torso',       color: '#B30000' },
   { label: 'Il Classico Calice', color: '#D4AF37' },
-  { label: 'SpizziCantina',      color: '#5C1349' }
+  { label: 'Spizzi Cantina',      color: '#5C1349' }
 ];
 
 let spinning = false;
