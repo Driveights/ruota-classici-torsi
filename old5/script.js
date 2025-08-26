@@ -18,7 +18,7 @@ let spinning = false;
 let lastRotation = 0;
 
 // Font del canvas: usa Special Elite (come nel resto del sito)
-const CANVAS_FONT = '700 24px \"Special Elite\", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif'; // leggermente più grande
+const CANVAS_FONT = '700 22px \"Special Elite\", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif'; // leggermente più grande
 
 function setupHiDPI() {
   const dpr = window.devicePixelRatio || 1;
