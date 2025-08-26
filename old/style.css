@@ -1,0 +1,108 @@
+/* RESET DI BASE */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Special Elite", monospace;
+  text-align: center;
+  background: #faf3e0;
+  color: #333;
+  padding: 10px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: "Special Elite", monospace;
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+}
+
+/* WRAPPER RUOTA */
+.ruota-wrapper {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+}
+
+#ruota {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display: block;
+}
+
+/* LOGO AL CENTRO */
+#logo {
+  width: 20%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: white;
+  padding: 5px;
+  z-index: 2;
+}
+
+/* FRECCIA IN ALTO */
+#freccia {
+  width: 25%;
+  max-width: 60px;
+  position: absolute;
+  top: -8%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+/* BOTTONE */
+#giraBtn {
+  background: #8B0000;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.2s ease;
+  font-family: "Special Elite", monospace;
+  font-weight: bold;
+}
+
+#giraBtn:hover:not(:disabled) {
+  background: #a40000;
+}
+
+#giraBtn:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
+/* MESSAGGIO */
+#messaggio {
+  font-size: 1.2rem;
+  margin-top: 15px;
+  font-weight: bold;
+  font-family: "Special Elite", monospace;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+  #messaggio {
+    font-size: 1rem;
+  }
+}

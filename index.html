@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>I Classici Torsi - Ruota della Fortuna</title>
-  
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>LA CLASSICA RUOTA</h1>
-    <div class="ruota-wrapper">
-      <canvas id="ruota"></canvas>
-      <img src="assets/logo.png" id="logo" alt="Logo Cantina">
-      <img src="assets/indicatore.svg" id="freccia" alt="Indicatore">
+    <h1>🍷 Ruota della Fortuna</h1>
+
+    <div class="ruota-stage">
+      <!-- Indicatore fisso in alto -->
+      <div class="indicator" aria-hidden="true"></div>
+
+      <div class="ruota-wrapper">
+        <canvas id="ruota" width="520" height="520" aria-label="Ruota della fortuna"></canvas>
+        <img src="assets/logo.png" id="logo" alt="Logo Cantina" />
+      </div>
     </div>
-    <button id="giraBtn">Gira la Ruota</button>
-    <p id="messaggio"></p>
+
+    <button id="giraBtn" type="button" aria-live="polite">Gira la Ruota</button>
+    <p id="messaggio" role="status" aria-live="polite"></p>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
