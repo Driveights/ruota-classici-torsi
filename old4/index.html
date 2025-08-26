@@ -3,29 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>I Classici Torsi - Ruota</title>
+  <title>I Classici Torsi - Ruota della Fortuna</title>
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Ruota della Fortuna</h1>
+    <h1>🍷 Ruota della Fortuna</h1>
 
     <div class="ruota-stage">
-      <!-- Indicatore: tua immagine SVG -->
-      <img id="indicator" src="assets/indicatore.svg" alt="Indicatore" />
+      <!-- Indicatore fisso in alto -->
+      <div class="indicator" aria-hidden="true"></div>
 
       <div class="ruota-wrapper">
         <canvas id="ruota" width="520" height="520" aria-label="Ruota della fortuna"></canvas>
-
-        <!-- Logo centrale con bordi stondati -->
-        <div class="logo-wrap" aria-hidden="true">
-          <img src="assets/logo.png" alt="Logo" />
-        </div>
+        <img src="assets/logo.png" id="logo" alt="Logo Cantina" />
+        <img src="assets/indicatore.svg" id="freccia" alt="Indicatore">
       </div>
     </div>
 
-    <button id="giraBtn" type="button">Gira</button>
+    <button id="giraBtn" type="button" aria-live="polite">Gira la Ruota</button>
     <p id="messaggio" role="status" aria-live="polite"></p>
   </div>
 

@@ -1,0 +1,109 @@
+/* Usa il font già caricato dal tuo progetto (nessun import esterno).
+   Se hai definito :root { --brand-font: 'NomeFont'; } verrà usato automaticamente. */
+:root { --brand-font: inherit; }
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--brand-font), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: #2a2438;
+  background:
+    radial-gradient(1200px 600px at 50% -100%, rgba(255,255,255,0.9), rgba(250,243,224,0.9) 40%, rgba(250,243,224,1) 60%),
+    #faf3e0;
+}
+
+.container { max-width: 960px; margin: 32px auto 64px; padding: 0 16px; }
+
+h1 {
+  margin: 0 0 20px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.ruota-stage {
+  display: inline-block;
+  position: relative;
+  padding-top: 40px; /* spazio per l'indicatore */
+}
+
+.indicator {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 26px solid #b10e0e; /* freccia */
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+  z-index: 3;
+}
+
+.ruota-wrapper {
+  position: relative;
+  display: inline-block;
+  padding: 18px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #ffffff, #f1e8d4);
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.12),
+    inset 0 2px 6px rgba(255,255,255,0.5);
+}
+
+#ruota {
+  display: block;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(60% 60% at 50% 50%, #fff 0%, #f7f1e3 100%);
+  box-shadow: inset 0 8px 20px rgba(0,0,0,0.08);
+}
+
+#logo {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px; height: auto;
+  opacity: 0.95;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.15));
+}
+
+#giraBtn {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 14px 22px;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #b10e0e, #8f0b0b);
+  color: #fff;
+  cursor: pointer;
+  box-shadow:
+    0 8px 16px rgba(177,14,14,0.35),
+    inset 0 2px 0 rgba(255,255,255,0.25);
+  transition: transform .08s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+#giraBtn:hover { transform: translateY(-1px); filter: brightness(1.02); }
+#giraBtn:active { transform: translateY(0); box-shadow: 0 4px 10px rgba(177,14,14,0.35); }
+#giraBtn:disabled { background: #c7c7c7; box-shadow: none; cursor: not-allowed; }
+
+#messaggio {
+  min-height: 28px;
+  font-size: 20px;
+  margin: 14px 0 0;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+  #ruota, .ruota-wrapper { width: 92vw; }
+  #ruota { height: 92vw; }
+}
