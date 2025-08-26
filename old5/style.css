@@ -1,4 +1,4 @@
-/* Usa il font Special Elite in tutto il sito */
+/* Usa sempre il font Special Elite in tutto il sito */
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {
@@ -14,14 +14,14 @@ h1 { font-size: 24px; margin: 0 0 16px; font-weight: 700; }
 .ruota-stage {
   position: relative;
   display: inline-block;
-  padding-top: 70px; /* spazio per indicatore (più grande ma più vicino) */
+  padding-top: 60px; /* spazio per l'indicatore */
 }
 
 #indicator {
   position: absolute;
   left: 50%; top: 0;
-  transform: translate(-50%, 6px); /* avvicina alla ruota */
-  height: 72px; width: auto;      /* più grande */
+  transform: translate(-50%, 0);
+  height: 46px; width: auto;
   z-index: 3;
   user-select: none;
   pointer-events: none;
@@ -44,14 +44,14 @@ h1 { font-size: 24px; margin: 0 0 16px; font-weight: 700; }
   background: #fff;
 }
 
-/* Logo centrale con bordi stondati (più piccolo) */
+/* Logo centrale con bordi stondati */
 .logo-wrap {
   position: absolute;
   left: 50%; top: 50%;
   transform: translate(-50%, -50%);
-  width: 22%;           /* più piccolo (prima 28%) */
+  width: 28%;
   aspect-ratio: 1 / 1;
-  border-radius: 18px;  /* angoli stondati */
+  border-radius: 22px;        /* << angoli stondati */
   overflow: hidden;
   background: #ffffff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
@@ -82,6 +82,6 @@ h1 { font-size: 24px; margin: 0 0 16px; font-weight: 700; }
 
 @media (max-width: 560px) {
   h1 { font-size: 20px; }
-  #indicator { height: 60px; transform: translate(-50%, 4px); }
-  .logo-wrap { width: 26%; border-radius: 16px; }
+  #indicator { height: 40px; }
+  .logo-wrap { width: 32%; border-radius: 18px; }
 }

@@ -1,4 +1,4 @@
-// Ruota con 3 spicchi uguali; font Special Elite; indicatore: assets/indicatore.svg
+// Ruota con 3 spicchi uguali; font Special Elite ovunque; indicatore: assets/indicatore.svg
 const canvas = document.getElementById('ruota');
 const ctx = canvas.getContext('2d');
 const btn = document.getElementById('giraBtn');
@@ -17,8 +17,8 @@ const segments = [
 let spinning = false;
 let lastRotation = 0;
 
-// Testo più piccolo rispetto alla versione precedente
-const CANVAS_FONT = '700 20px \"Special Elite\", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif';
+// Font del canvas: usa Special Elite (come nel resto del sito)
+const CANVAS_FONT = '700 24px \"Special Elite\", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif'; // leggermente più grande
 
 function setupHiDPI() {
   const dpr = window.devicePixelRatio || 1;
@@ -69,7 +69,7 @@ function drawWheel(rotation = 0) {
     ctx.strokeStyle = 'rgba(0,0,0,0.10)';
     ctx.stroke();
 
-    // Testo (Special Elite, più piccolo)
+    // Testo (Special Elite, più grande)
     const mid = (s.start + s.end) / 2;
     ctx.save();
     ctx.rotate(mid);
@@ -77,7 +77,7 @@ function drawWheel(rotation = 0) {
     ctx.textBaseline = 'middle';
     ctx.fillStyle = '#ffffff';
     ctx.font = CANVAS_FONT;
-    wrapText(ctx, s.label, radius * 0.62, 0, radius * 0.28, 24);
+    wrapText(ctx, s.label, radius * 0.62, 0, radius * 0.30, 24); // maxWidth e interlinea maggiorati
     ctx.restore();
   });
 
