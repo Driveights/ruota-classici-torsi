@@ -49,7 +49,7 @@ h1 { font-size: 24px; margin: 0 0 16px; font-weight: 700; }
   position: absolute;
   left: 50%; top: 50%;
   transform: translate(-50%, -50%);
-  width: 28%;
+  width: 22%;
   aspect-ratio: 1 / 1;
   border-radius: 22px;        /* << angoli stondati */
   overflow: hidden;
@@ -82,6 +82,6 @@ h1 { font-size: 24px; margin: 0 0 16px; font-weight: 700; }
 
 @media (max-width: 560px) {
   h1 { font-size: 20px; }
-  #indicator { height: 40px; }
+  #indicator { height: 60px; }
   .logo-wrap { width: 32%; border-radius: 18px; }
 }
