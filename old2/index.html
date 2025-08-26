@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>I Classici Torsi - Ruota</title>
+  <title>I Classici Torsi - Ruota della Fortuna</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Ruota della Fortuna</h1>
+    <h1>🍷 Ruota della Fortuna</h1>
 
     <div class="ruota-stage">
-      <!-- Indicatore: usa la TUA immagine (foto) -->
-      <img id="indicator" src="assets/indicator.png" alt="Indicatore" />
+      <!-- Indicatore fisso in alto -->
+      <div class="indicator" aria-hidden="true"></div>
+
       <div class="ruota-wrapper">
         <canvas id="ruota" width="520" height="520" aria-label="Ruota della fortuna"></canvas>
-        <img src="assets/logo.png" id="logo" alt="Logo" />
+        <img src="assets/logo.png" id="logo" alt="Logo Cantina" />
       </div>
     </div>
 
-    <button id="giraBtn" type="button">Gira</button>
+    <button id="giraBtn" type="button" aria-live="polite">Gira la Ruota</button>
     <p id="messaggio" role="status" aria-live="polite"></p>
   </div>
 
