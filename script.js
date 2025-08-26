@@ -77,7 +77,7 @@ function drawWheel(rotation = 0) {
     ctx.textBaseline = 'middle';
     ctx.fillStyle = '#ffffff';
     ctx.font = CANVAS_FONT;
-    wrapText(ctx, s.label, radius * 0.62, 0, radius * 0.30, 28); // maxWidth e interlinea maggiorati
+    wrapText(ctx, s.label, radius * 0.62, 0, radius * 0.30, 24); // maxWidth e interlinea maggiorati
     ctx.restore();
   });
 

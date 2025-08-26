@@ -27,7 +27,6 @@ h1 {
 .ruota-stage {
   display: inline-block;
   position: relative;
-  padding-top: 40px; /* spazio per l'indicatore */
 }
 
 .indicator {
@@ -67,7 +66,7 @@ h1 {
   position: absolute;
   left: 50%; top: 50%;
   transform: translate(-50%, -50%);
-  width: 120px; height: auto;
+  width: 80px; height: auto;
   opacity: 0.95;
   pointer-events: none;
   filter: drop-shadow(0 1px 3px rgba(0,0,0,0.15));
