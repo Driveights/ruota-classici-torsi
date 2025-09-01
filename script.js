@@ -8,36 +8,41 @@ const msg = document.getElementById('messaggio');
 const segments = [
   { label: 'Sei un Torso',        weight: 0.70, color: '#B30000' },
   { label: 'Il Classico Calice',  weight: 0.15, color: '#D4AF37' },
-  { label: 'SpizziCantina',       weight: 0.15, color: '#72B01D' }
+  { label: 'SpizziCantina',       weight: 0.15, color: '#5C1349' }
 ];
 
 const TWO_PI = Math.PI * 2;
 const INDICATOR_ANGLE = -Math.PI / 2; // 12 o'clock, arrow pointing down
+
+// State
 let spinning = false;
 let lastRotation = 0;
 
-// HiDPI setup
+// Geometry
+let center = { x: 0, y: 0 };
+let radius = 0;
+let segAngles = [];
+
+// HiDPI + robust sizing
 function setupHiDPI() {
   const dpr = window.devicePixelRatio || 1;
-  const css = parseInt(getComputedStyle(canvas).width, 10) || 520;
+  const css = Math.floor(canvas.clientWidth || 520);
   canvas.width = Math.floor(css * dpr);
   canvas.height = Math.floor(css * dpr);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
-setupHiDPI();
-window.addEventListener('resize', () => { setupHiDPI(); recalcGeometry(); drawWheel(lastRotation); });
 
-// Geometry
-let center = { x: 0, y: 0 }, radius = 0, segAngles = [];
 function recalcGeometry() {
-  const dpr = window.devicePixelRatio || 1;
-  const cssW = canvas.width / dpr, cssH = canvas.height / dpr;
-  center = { x: cssW / 2, y: cssH / 2 };
+  const cssW = canvas.clientWidth || 520;
+  const cssH = canvas.clientHeight || 520;
+  center.x = cssW / 2;
+  center.y = cssH / 2;
   radius = Math.min(center.x, center.y) - 10;
   buildAnglesEqual();
 }
+
 function buildAnglesEqual() {
-  // Build equal-size slices; weights are only for selection
+  // Equal-size slices; weights are only for selection
   const n = segments.length;
   const sweep = TWO_PI / n;
   let start = 0;
@@ -47,7 +52,6 @@ function buildAnglesEqual() {
     return rec;
   });
 }
-recalcGeometry();
 
 // Drawing
 function drawWheel(rotation = 0) {
@@ -88,11 +92,11 @@ function drawWheel(rotation = 0) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = '#fff';
-    ctx.font = '700 24px var(--brand-font, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif)';
+    ctx.font = '700 26px var(--brand-font, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif)';
     ctx.shadowColor = 'rgba(0,0,0,0.35)';
     ctx.shadowBlur = 6;
     ctx.shadowOffsetY = 1;
-    wrapText(ctx, s.label, radius * 0.60, 0, radius * 0.28, 26);
+    wrapText(ctx, s.label, radius * 0.60, 0, radius * 0.30, 28);
     ctx.restore();
   });
 
@@ -137,10 +141,11 @@ function wrapText(context, text, x, y, maxWidth, lineHeight) {
   lines.forEach((l, i) => context.fillText(l, x, startY + i * lineHeight));
 }
 
-// Daily gating (same as before)
+// Daily gating
 const todayKey = new Date().toLocaleDateString();
 if (localStorage.getItem('ultimaGiocata') === todayKey) {
   btn.disabled = true;
+  btn.style.display = 'none';
   msg.textContent = 'Hai già giocato oggi, torna domani! 🍷';
 }
 
@@ -158,7 +163,7 @@ btn.addEventListener('click', () => {
   const winnerMid = (winnerSeg.start + winnerSeg.end) / 2;
 
   // 2) compute target rotation so winnerMid aligns exactly to indicator
-  const extraTurns = 5 + Math.floor(Math.random() * 3); // 5,6,7 full spins
+  const extraTurns = 5 + Math.floor(Math.random() * 3); // 5–7 full spins
   const delta = normalizeAngle(INDICATOR_ANGLE - (winnerMid + lastRotation)); // exact alignment
   const target = lastRotation + extraTurns * TWO_PI + delta;
 
@@ -175,8 +180,19 @@ btn.addEventListener('click', () => {
     else {
       lastRotation = target % TWO_PI;
       spinning = false;
-      msg.textContent = `Hai vinto: ${winnerSeg.label}! 🎉`;
+
+      // Messaggio finale:
+      // Se il risultato è "Sei un Torso" NON dire "hai vinto"
+      if (winnerSeg.label === 'Sei un Torso') {
+        msg.textContent = 'Sei un Torso 😅';
+      } else {
+        msg.textContent = `Hai vinto: ${winnerSeg.label}! 🎉`;
+      }
+
+      // Nascondi il pulsante a fine spin
       btn.disabled = true;
+      btn.style.display = 'none';
+
       localStorage.setItem('ultimaGiocata', todayKey);
     }
   })(performance.now());
@@ -197,4 +213,13 @@ function easeOutQuint(x) { return 1 - Math.pow(1 - x, 5); }
 function lerp(a, b, t) { return a + (b - a) * t; }
 
 // Initial draw
-drawWheel(lastRotation);
+window.addEventListener('load', () => {
+  setupHiDPI();
+  recalcGeometry();
+  drawWheel(lastRotation);
+});
+window.addEventListener('resize', () => {
+  setupHiDPI();
+  recalcGeometry();
+  drawWheel(lastRotation);
+});
