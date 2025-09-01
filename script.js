@@ -8,13 +8,13 @@ const msg = document.getElementById('messaggio');
 const segments = [
   { label: 'Sei un Torso',        weight: 0.70, color: '#B30000' },
   { label: 'Il Classico Calice',  weight: 0.15, color: '#D4AF37' },
-  { label: 'SpizziCantina',       weight: 0.15, color: '#5C1349' }
+  { label: 'SpizziCantina',       weight: 0.15, color: '#72B01D' }
 ];
 
 const TWO_PI = Math.PI * 2;
 const INDICATOR_ANGLE = -Math.PI / 2; // 12 o'clock, arrow pointing down
 
-// State
+// State'#72B01D'
 let spinning = false;
 let lastRotation = 0;
 
